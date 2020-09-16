@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MdShoppingCart } from 'react-icons/md';
 
@@ -7,7 +7,9 @@ import { Container, Cart } from './styles';
 
 import logo from '../../assets/logo.SVG'
 
-const Header = ({cartSize}) => {
+export default function Header () {
+
+  const cartSize = useSelector(state => state.cart.length);
 
   return(
     <Container>
@@ -24,9 +26,3 @@ const Header = ({cartSize}) => {
     </Container>
   );
 }
-
-const mapStateToProps = state => ({
-  cartSize: state.cart.length,
-})
-
-export default connect(mapStateToProps)(Header);
